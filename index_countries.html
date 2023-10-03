@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas of___</title>
+
+    <!--leaflet css-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <style>
+        body {
+            margin:0;
+            padding:0;
+        } 
+
+        #map {
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map">
+        <div class="coordinate"></div>
+    </div>
+</body>
+
+</html>
+
+<!--leaflet js-->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="Countriesvisited.js"></script>
+<script src="homecountry.js"></script>
+<script src = "Countriestovisit.js"></script>
+
+
+<script>
+    // Map initialisation
+    var map = L.map('map').setView([1.3521, 103.8198], 5);
+
+
+
+
+     /* ====================================
+                TILE LAYER
+    =====================================*/
+    // osm layer
+    var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    });
+    // osm.addTo(map);
+
+    // Dark Mode
+    var Carto_Darkmap = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+	    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+	    subdomains: 'abcd',
+	    maxZoom: 20
+    });
+    Carto_Darkmap.addTo(map)
+
+    // White Mode
+    var CartoDB_Voyager = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+	    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+	    subdomains: 'abcd',
+	    maxZoom: 20
+    }); 
+    CartoDB_Voyager.addTo(map)
+
+    //Google Satellite
+    var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+        maxZoom: 20,
+        subdomains:['mt0','mt1','mt2','mt3']
+    });
+    // googleSat.addTo(map)
+
+
+
+
+     /* ====================================
+                    ICONS
+    =====================================*/
+    // GeoJSON icon for Countries visited 
+    function createGeoJSONicon (feature, latlng){
+        let GeoJSONicon = L.icon ({
+            iconUrl: 'Marker.png',
+            iconSize: [20, 20],
+            fillOpacity: 0.2,
+        })
+        return L.marker(latlng, { icon: GeoJSONicon })
+    }
+
+    let GeoJSONlayer = {
+        pointToLayer: createGeoJSONicon
+    }
+
+    // GeoJSON icon for Place of Birth 
+    function createGeoJSONicontwo (feature, latlng){
+        let GeoJSONicontwo = L.icon ({
+            iconUrl: 'Marker2.png',
+            iconSize: [25, 25],
+            fillOpacity: 0.2,
+        })
+        return L.marker(latlng, { icon: GeoJSONicontwo })
+    }
+
+    let GeoJSONlayertwo = {
+        pointToLayer: createGeoJSONicontwo
+    }
+
+    // GeoJSON icon for Place of Birth 
+    function createGeoJSONiconthree (feature, latlng){
+        let GeoJSONiconthree = L.icon ({
+            iconUrl: 'Marker3.png',
+            iconSize: [15, 15],
+            fillOpacity: 0.2,
+        })
+        return L.marker(latlng, { icon: GeoJSONiconthree })
+    }
+
+    let GeoJSONlayerthree = {
+        pointToLayer: createGeoJSONiconthree
+    }
+
+
+     /* ====================================
+                GEOJSON
+    =====================================*/
+    var mycountriesvisiteddata = L.geoJSON(mycountriesvisited, GeoJSONlayer).addTo(map)
+    var homecountrydata = L.geoJSON(homecountry, GeoJSONlayertwo).addTo(map)
+    var countriestovisitdata = L.geoJSON(countriestovisit, GeoJSONlayerthree).addTo(map)
+
+
+
+
+    // console.log(FirstMarker.toGeoJSON())
+
+
+
+
+    /* ====================================
+                LAYER CONTROL
+    =====================================*/
+    //Layer Controller
+    var baseMaps = {
+        // "Base Map": osm,
+        "White Mode": CartoDB_Voyager,
+        "Dark Mode": Carto_Darkmap,
+        "Google Satellite": googleSat,
+    };
+
+    var overlayMaps = {
+        "Place of Birth": homecountrydata,
+        "Countries visited": mycountriesvisiteddata,
+        "Future travels": countriestovisitdata,
+        
+    };
+
+    var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+
+</script>
+
+
+

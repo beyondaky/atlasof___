@@ -1,0 +1,38 @@
+Singapore 1.3521, 103.8198
+Malaysia 4.2105, 101.9758
+Indonesia 0.7893, 113.9213
+Thailand 15.8700, 100.9925
+Cambodia 12.5657, 104.9910
+Vietnam 14.0583, 108.2772
+China 35.8617, 104.1954
+Hong Kong 22.3193, 114.1694
+Taiwan 23.6978, 120.9605
+Japan 36.2048, 138.2529
+South Korea 35.9078, 127.7669
+Mongolia 46.8625, 103.8467
+Bangladesh 23.6850, 90.3563
+India 20.5937, 78.9629
+Nepal 28.3949, 84.1240
+Australia -25.2744, 133.7751
+United Arab Emirates 23.4241, 53.8478
+Turkey 38.9637, 35.2433
+Estonia 58.5953, 25.0136
+Poland 51.9194, 19.1451
+Slovakia 48.6690, 19.6990
+Hungary 47.1625, 19.5033
+Austria 47.5162, 14.5501
+Czech Republic 49.8175, 15.4730
+Germany 51.1657, 10.4515
+Switzerland 46.8182, 8.2275
+Italy 41.8719, 12.5674
+Vatican City 41.9029, 12.4534
+Spain 40.4637, 3.7492
+Gibraltar 36.1408, 5.3536
+Portugal 39.3999, 8.2245
+United Kingdom 55.3781, 3.4360
+Finland 61.9241, 25.7482
+Sweden 60.1282, 18.6435
+Denmark 56.2639, 9.5018
+Norway 60.4720, 8.4689
+Hawaii 19.8987, 155.6659
+
